@@ -96,8 +96,8 @@
   <!-- INTRO -->
   <section id="intro">
     <h1>Am I From Milan <span class="or">or</span> Do I Have OCD?</h1>
-    <p class="lede">Both involve immaculate surfaces, rituals that cannot be skipped, and the quiet conviction that everyone else is doing it slightly wrong. One bills you €9 for the spritz. The other never lets you leave the door un-checked.</p>
-    <p class="lede small">The question is which one explains it.</p>
+    <p class="lede">From the outside they can look identical: precise, particular, and quietly certain that everyone else is doing it slightly wrong. This diagnostic tells them apart.</p>
+    <p class="lede small">Answer honestly. The result will decide which one explains you.</p>
     <div class="meta">15 questions · 2 minutes · One uncomfortable truth</div>
     <button class="btn" id="begin">Begin the Diagnostic</button>
   </section>
@@ -147,125 +147,125 @@
 /* Each option adds points to milan (m) and/or ocd (o).
    Two independent scores, each normalized against its own max. */
 const QUESTIONS = [
-  // Imbruttito: hustle / fatturato.  OCD: intrusive doubt.
-  { q: "It's 6:45am. The first thought in your head is…",
+  // drive/status  vs  intrusive doubt
+  { q: "Early in the morning, the first thing that runs through your mind is…",
     a:[
-      {t:"\"Bella.\" Then: today we make fatturato. We crush.", m:3,o:0},
-      {t:"\"Did I actually send that email, or just think about sending it?\"", m:0,o:3},
-      {t:"Both, on a loop, until I check my Sent folder. Twice.", m:2,o:2},
-      {t:"Coffee. That's the whole thought.", m:0,o:0},
+      {t:"A short list of people I want to stay a step ahead of today.", m:3,o:0},
+      {t:"Whether I actually finished something yesterday, or only meant to.", m:0,o:3},
+      {t:"Both — and I won't relax until I've gone back and checked.", m:2,o:2},
+      {t:"Coffee. That's about as far as it gets.", m:0,o:0},
     ]},
-  // Imbruttito: aperitivo ritual.  OCD: rituals that can't be skipped.
-  { q: "Aperitivo at 7pm is…",
+  // taste/standards vs rituals & need-for-certainty
+  { q: "Your ideal evening out is…",
     a:[
-      {t:"A non-negotiable rite. Spritz, San Babila, the right people.", m:3,o:1},
-      {t:"Fine — once I've confirmed the plan, the table, and the exact time.", m:1,o:2},
-      {t:"A ritual I literally cannot skip without something feeling wrong.", m:1,o:3},
-      {t:"Just a drink before dinner?", m:0,o:0},
+      {t:"The right place, the right people, and looking the part.", m:3,o:1},
+      {t:"Fine — as long as I know the plan, the place and the timing ahead.", m:1,o:2},
+      {t:"Built around a routine I'd feel uneasy changing.", m:1,o:3},
+      {t:"Wherever, whenever. I'll figure it out.", m:0,o:0},
     ]},
-  // contamination (OCI-R washing) vs Milanese fastidiousness
-  { q: "On the metro, someone coughs near you. You…",
+  // contamination vs fastidiousness
+  { q: "Someone right next to you sneezes without covering it. You…",
     a:[
-      {t:"Sanitize. Then sanitize again. Then think about it for an hour.", m:0,o:3},
-      {t:"Recoil — that jacket is cashmere and now it must be dry-cleaned.", m:3,o:1},
-      {t:"Hold your breath and relocate down the carriage, elegantly.", m:2,o:1},
-      {t:"Nothing. People cough.", m:0,o:0},
+      {t:"Clean your hands, then clean them again — and it stays on your mind.", m:0,o:3},
+      {t:"Check your clothes; that'll need dealing with now.", m:3,o:1},
+      {t:"Quietly move somewhere else.", m:2,o:1},
+      {t:"Don't give it a thought. People sneeze.", m:0,o:0},
     ]},
-  // checking (Y-BOCS) vs status anxiety
-  { q: "You've left the house. How many times do you check the door?",
+  // checking vs self-trust
+  { q: "After leaving home, how sure are you that the door is locked?",
     a:[
-      {t:"Once. I'm late for padel and the SUV is double-parked.", m:3,o:0},
-      {t:"Twice — and I picture the lock turning as I walk to the car.", m:0,o:2},
-      {t:"I go back up. I photograph it locked. Sometimes I still doubt the photo.", m:0,o:3},
-      {t:"I assume it's locked.", m:0,o:0},
+      {t:"Sure enough. I've places to be and I trust myself.", m:3,o:0},
+      {t:"I picture the lock turning as I walk away, just to settle it.", m:0,o:2},
+      {t:"I sometimes go back to be certain — occasionally more than once.", m:0,o:3},
+      {t:"I assume it's fine.", m:0,o:0},
     ]},
-  // symmetry / ordering (OCI-R) vs aesthetic perfectionism
-  { q: "A picture frame on the wall is 2° crooked. You…",
+  // symmetry/ordering vs aesthetic standards
+  { q: "A picture on the wall is slightly crooked. You…",
     a:[
-      {t:"Straighten it. The room was disrespecting itself.", m:3,o:1},
-      {t:"Cannot continue the conversation until it is fixed. Cannot.", m:1,o:3},
-      {t:"Straighten it, step back, adjust again, step back, adjust again.", m:1,o:3},
-      {t:"Don't notice it.", m:0,o:0},
+      {t:"Straighten it. A room should look right.", m:3,o:1},
+      {t:"Can't really focus on anything else until it's fixed.", m:1,o:3},
+      {t:"Fix it, step back, adjust again, until it's exactly right.", m:1,o:3},
+      {t:"Don't really notice.", m:0,o:0},
     ]},
-  // Imbruttito phone/work compulsion vs reassurance-checking
+  // drive vs reassurance/order
   { q: "Your relationship with your phone is best described as…",
     a:[
-      {t:"Three calls at once. \"Capo, ti richiamo in cinque minuti.\"", m:3,o:0},
-      {t:"Re-reading sent messages to confirm I didn't say something terrible.", m:0,o:3},
-      {t:"Inbox at zero, notifications off, every app in its labeled folder.", m:1,o:2},
-      {t:"It's a phone.", m:0,o:0},
+      {t:"Always on — people to reach, things to keep moving.", m:3,o:0},
+      {t:"I re-read messages I've sent, to be sure I didn't get something wrong.", m:0,o:3},
+      {t:"Inbox empty, notifications off, everything filed away.", m:1,o:2},
+      {t:"It's just a phone.", m:0,o:0},
     ]},
-  // Imbruttito weekend vs need for sameness/routine
-  { q: "The weekend plan is…",
+  // status vs need for sameness
+  { q: "Your ideal weekend is…",
     a:[
-      {t:"Forte dei Marmi in summer, montagna in winter. Non si discute.", m:3,o:0},
-      {t:"Identical to last weekend. Deviating from the routine feels unsafe.", m:0,o:3},
-      {t:"Planned to the minute, or the anxiety starts on Thursday.", m:1,o:2},
-      {t:"Whatever happens, happens.", m:0,o:0},
+      {t:"Somewhere worth being, with the right crowd.", m:3,o:0},
+      {t:"More or less identical to last weekend — changing it feels off.", m:0,o:3},
+      {t:"Planned in detail, or I start feeling uneasy by midweek.", m:1,o:2},
+      {t:"Wide open. Whatever happens, happens.", m:0,o:0},
     ]},
-  // intrusive thoughts (real OCD core) vs Milanese catastrophizing about image
-  { q: "Standing on a high balcony, the thought that arrives is…",
+  // status-awareness vs intrusive thought
+  { q: "Standing somewhere high up, the first thing that comes to mind is…",
     a:[
-      {t:"\"This view easily adds €200k to the asking price.\"", m:3,o:0},
-      {t:"An unwanted, intrusive image that horrifies me — so I step back and count.", m:0,o:3},
-      {t:"\"Is my outfit right for being seen up here?\"", m:2,o:1},
-      {t:"\"Nice view.\"", m:0,o:0},
+      {t:"What a place like this says about whoever owns it.", m:3,o:0},
+      {t:"An unwanted thought that unsettles me, so I step back.", m:0,o:3},
+      {t:"Whether I look right standing up here.", m:2,o:1},
+      {t:"Nice view.", m:0,o:0},
     ]},
-  // counting / numbers (Y-BOCS) vs Imbruttito performance metrics
+  // metrics/competition vs counting & 'bad numbers'
   { q: "Be honest about numbers. Do you…",
     a:[
-      {t:"Track revenue, steps, padel ranking and macros, daily, competitively.", m:3,o:1},
-      {t:"Have 'good' and 'bad' numbers, and avoid the bad ones?", m:0,o:3},
-      {t:"Count stairs, tiles, or do things a 'safe' number of times?", m:0,o:3},
+      {t:"Track them — money, fitness, progress — and like to come out ahead.", m:3,o:1},
+      {t:"Have 'good' and 'bad' numbers, and quietly avoid the bad ones?", m:0,o:3},
+      {t:"Count things, or repeat them a set number of times to feel settled?", m:0,o:3},
       {t:"Not really think about numbers.", m:0,o:0},
     ]},
-  // washing/order vs Milanese hygiene-as-class
+  // presentation vs ordering/washing
   { q: "Your bathroom towels are…",
     a:[
-      {t:"Hotel-folded, monogrammed, color-matched to the Boffi tile.", m:3,o:1},
-      {t:"Folded in exact thirds, edges aligned, or it's done again.", m:1,o:3},
-      {t:"Replaced constantly — clean is never quite clean enough.", m:0,o:3},
+      {t:"Folded neatly and matched — it should look pulled together.", m:3,o:1},
+      {t:"In exact thirds, edges aligned, or I redo them.", m:1,o:3},
+      {t:"Changed often — clean never quite feels clean enough.", m:0,o:3},
       {t:"On the floor, probably.", m:0,o:0},
     ]},
-  // reassurance seeking (real OCD) vs Imbruttito name-dropping confidence
+  // confidence vs reassurance-seeking
   { q: "After making a decision, you…",
     a:[
-      {t:"Never look back. \"L'ho deciso io, è giusto così.\"", m:3,o:0},
-      {t:"Ask three people if it was okay. Then ask them again.", m:0,o:3},
-      {t:"Replay it for errors before falling asleep.", m:0,o:2},
+      {t:"Don't look back — I decided, so it's right.", m:3,o:0},
+      {t:"Ask a few people if it was okay, then ask them again.", m:0,o:3},
+      {t:"Replay it for mistakes before falling asleep.", m:0,o:2},
       {t:"Move on without much thought.", m:0,o:0},
     ]},
-  // small talk vs mental review / 'just right' feeling
+  // status/taste vs 'just right' feeling
   { q: "An everyday task feels finished when…",
     a:[
-      {t:"It looks expensive and slightly better than the neighbour's.", m:3,o:0},
+      {t:"It looks a notch better than what's around it.", m:3,o:0},
       {t:"It feels 'just right' — and I'll redo it until it does.", m:0,o:3},
-      {t:"It's done correctly, then quietly improved anyway.", m:2,o:2},
+      {t:"It's done properly, then quietly improved anyway.", m:2,o:2},
       {t:"It's done. Done is done.", m:0,o:0},
     ]},
-  // Imbruttito wardrobe vs ordering compulsion
+  // taste vs ordering compulsion
   { q: "Your wardrobe is…",
     a:[
-      {t:"Greige, logo-free, the same perfect cashmere in four shades.", m:3,o:1},
-      {t:"Sorted by colour, then sleeve, then season — and it must stay that way.", m:1,o:3},
-      {t:"Identical outfits on matching hangers, spaced exactly apart.", m:2,o:2},
-      {t:"Functional. I grab what's clean.", m:0,o:0},
+      {t:"Considered — quality over labels, nothing out of place.", m:3,o:1},
+      {t:"Sorted by colour, then length — and it has to stay that way.", m:1,o:3},
+      {t:"Near-identical pieces, evenly spaced on matching hangers.", m:2,o:2},
+      {t:"Whatever's clean.", m:0,o:0},
     ]},
-  // avoidance vs Milanese standards
-  { q: "There's a tiny stain on the tablecloth at dinner. You…",
+  // standards vs contamination/avoidance
+  { q: "There's a small stain on the tablecloth at dinner. You…",
     a:[
-      {t:"Have the table changed. We're not animals.", m:3,o:1},
-      {t:"Can't stop looking at it. It contaminates the whole evening.", m:0,o:3},
-      {t:"Rotate your plate to cover it and move on.", m:1,o:1},
-      {t:"Don't even register it.", m:0,o:0},
+      {t:"Quietly have it sorted — it bothers me on principle.", m:3,o:1},
+      {t:"Can't stop looking at it; it spoils the whole evening.", m:0,o:3},
+      {t:"Shift your plate over it and move on.", m:1,o:1},
+      {t:"Don't even notice.", m:0,o:0},
     ]},
-  // 'good enough' / completion
-  { q: "When someone says \"dai, è abbastanza, basta così\" you…",
+  // standards vs completion compulsion
+  { q: "When someone tells you \"that's enough, just leave it,\" you…",
     a:[
-      {t:"Disagree on principle. Abbastanza is for other people.", m:3,o:1},
-      {t:"Physically cannot stop until it's actually, completely right.", m:0,o:3},
-      {t:"Smile, agree, and secretly redo it later.", m:2,o:2},
-      {t:"Happily stop. Basta così.", m:0,o:0},
+      {t:"Disagree — 'enough' is usually a low bar.", m:3,o:1},
+      {t:"Genuinely can't stop until it's completely right.", m:0,o:3},
+      {t:"Agree out loud, then quietly redo it later.", m:2,o:2},
+      {t:"Happily stop.", m:0,o:0},
     ]},
 ];
 
