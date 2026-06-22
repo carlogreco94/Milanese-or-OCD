@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:title" content="Am I From Milan or Do I Have OCD?">
+<meta property="og:description" content="A rigorous diagnostic. 15 questions. One uncomfortable truth.">
+<meta property="og:type" content="website">
+<title>Am I From Milan or Do I Have OCD? | The Diagnostic</title>
+<style>
+  :root{
+    --bg:#0e0e10;
+    --panel:#161618;
+    --ink:#f4f1ea;
+    --muted:#9b968c;
+    --line:#2a2a2e;
+    --milan:#c8a24b;      /* gold — Milanese elegance */
+    --ocd:#5aa9c9;        /* clinical blue */
+    --accent:#f4f1ea;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--ink);
+    font-family:Georgia,"Times New Roman",serif;
+    -webkit-font-smoothing:antialiased;line-height:1.55}
+  .wrap{max-width:680px;margin:0 auto;padding:40px 24px 80px}
+  .brand{font-size:13px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--muted);font-family:Helvetica,Arial,sans-serif;margin-bottom:64px}
+  h1{font-size:clamp(34px,7vw,56px);line-height:1.08;font-weight:400;
+    margin-bottom:28px;letter-spacing:-.01em}
+  h1 .or{font-style:italic;color:var(--muted)}
+  .lede{font-size:19px;color:#d8d3c8;margin-bottom:20px}
+  .lede.small{font-size:17px;color:var(--muted)}
+  .meta{font-size:13px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--muted);font-family:Helvetica,Arial,sans-serif;
+    margin:36px 0 36px;border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);padding:18px 0}
+  button{font-family:Helvetica,Arial,sans-serif;cursor:pointer}
+  .btn{display:inline-block;background:var(--ink);color:#0e0e10;
+    border:none;padding:16px 30px;font-size:15px;letter-spacing:.04em;
+    font-weight:600;border-radius:2px;transition:opacity .2s}
+  .btn:hover{opacity:.85}
+  .btn.ghost{background:transparent;color:var(--ink);
+    border:1px solid var(--line)}
+  .hidden{display:none}
+
+  /* progress */
+  .qcount{font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--muted);font-family:Helvetica,Arial,sans-serif;margin-bottom:8px}
+  .pbar{height:2px;background:var(--line);margin-bottom:40px;overflow:hidden}
+  .pbar > i{display:block;height:100%;width:0;background:var(--ink);
+    transition:width .35s ease}
+  .qtext{font-size:clamp(24px,5vw,32px);font-weight:400;line-height:1.2;
+    margin-bottom:34px;min-height:1.2em}
+  .opts{display:flex;flex-direction:column;gap:12px}
+  .opt{text-align:left;background:var(--panel);color:var(--ink);
+    border:1px solid var(--line);padding:18px 20px;font-size:17px;
+    border-radius:3px;font-family:Georgia,serif;transition:border-color .15s,background .15s;width:100%}
+  .opt:hover{border-color:var(--ink);background:#1d1d20}
+
+  /* result */
+  .scores{margin:30px 0 10px}
+  .score{margin-bottom:26px}
+  .score .lab{display:flex;justify-content:space-between;align-items:baseline;
+    font-family:Helvetica,Arial,sans-serif;margin-bottom:8px}
+  .score .name{font-size:15px;letter-spacing:.1em;text-transform:uppercase}
+  .score .pct{font-size:26px;font-weight:700}
+  .track{height:10px;background:var(--line);border-radius:6px;overflow:hidden}
+  .track > i{display:block;height:100%;width:0;border-radius:6px;
+    transition:width 1s cubic-bezier(.2,.8,.2,1)}
+  .milan .pct,.milan .name{color:var(--milan)}
+  .milan .track > i{background:var(--milan)}
+  .ocd .pct,.ocd .name{color:var(--ocd)}
+  .ocd .track > i{background:var(--ocd)}
+  .verdict{font-size:22px;line-height:1.4;margin:18px 0 8px}
+  .verdict b{font-weight:700}
+  .disc{font-size:14px;color:var(--muted);font-style:italic;margin-top:10px}
+  .share{display:flex;gap:10px;flex-wrap:wrap;margin:30px 0 10px}
+  .divider{border:0;border-top:1px solid var(--line);margin:46px 0}
+  .foot h3{font-size:21px;font-weight:400;margin-bottom:12px}
+  .foot p{color:#cfcabf;margin-bottom:14px;font-size:16px}
+  .foot a{color:var(--milan)}
+  .small-link{font-size:13px;color:var(--muted);font-family:Helvetica,Arial,sans-serif}
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
+    background:var(--ink);color:#0e0e10;padding:12px 20px;border-radius:4px;
+    font-family:Helvetica,Arial,sans-serif;font-size:14px;font-weight:600;
+    opacity:0;pointer-events:none;transition:opacity .25s}
+  .toast.show{opacity:1}
+  .fade{animation:fade .4s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">The Diagnostic Institute</div>
+
+  <!-- INTRO -->
+  <section id="intro">
+    <h1>Am I From Milan <span class="or">or</span> Do I Have OCD?</h1>
+    <p class="lede">Both involve immaculate surfaces, rituals that cannot be skipped, and the quiet conviction that everyone else is doing it slightly wrong. One bills you €9 for the spritz. The other never lets you leave the door un-checked.</p>
+    <p class="lede small">The question is which one explains it.</p>
+    <div class="meta">15 questions · 2 minutes · One uncomfortable truth</div>
+    <button class="btn" id="begin">Begin the Diagnostic</button>
+  </section>
+
+  <!-- QUIZ -->
+  <section id="quiz" class="hidden">
+    <div class="qcount" id="qcount">Question 1 of 15</div>
+    <div class="pbar"><i id="pfill"></i></div>
+    <div class="qtext" id="qtext"></div>
+    <div class="opts" id="opts"></div>
+  </section>
+
+  <!-- RESULT -->
+  <section id="result" class="hidden">
+    <div class="qcount">Your Result</div>
+    <div class="scores">
+      <div class="score milan">
+        <div class="lab"><span class="name">Milanese</span><span class="pct" id="mpct">0%</span></div>
+        <div class="track"><i id="mbar"></i></div>
+      </div>
+      <div class="score ocd">
+        <div class="lab"><span class="name">OCD</span><span class="pct" id="opct">0%</span></div>
+        <div class="track"><i id="obar"></i></div>
+      </div>
+    </div>
+    <p class="disc">Scores are independent — they don't need to add up to 100%.</p>
+    <p class="verdict" id="verdict"></p>
+
+    <div class="share">
+      <button class="btn" id="shareNative">Share my result</button>
+      <button class="btn ghost" id="shareX">Share on X</button>
+      <button class="btn ghost" id="copy">Copy</button>
+    </div>
+    <button class="small-link" id="retake" style="background:none;border:none;margin-top:8px">↺ Retake the diagnostic</button>
+
+    <hr class="divider">
+    <div class="foot">
+      <h3>The things a quiz can't measure</h3>
+      <p>Some of the most exacting people in the city are both — an apartment off Corso Magenta, padel on Saturday, <em>and</em> the spice rack alphabetized at midnight. What they share is a refusal to let a crooked frame, a missed step, or a slightly-off fatturato go unaddressed. If that sounds familiar, the line between <em>taste</em> and <em>compulsion</em> may be thinner than your cashmere.</p>
+      <p class="small-link">A satirical diagnostic inspired by Milanese self-mythology and real OCD screening dimensions (checking, contamination, symmetry, intrusive thoughts). It is <b>not</b> a clinical instrument and not affiliated with the city of Milan. Real OCD is a serious, treatable condition — if intrusive thoughts or compulsions are affecting your life, a clinician beats any quiz.</p>
+    </div>
+  </section>
+</div>
+<div class="toast" id="toast">Copied to clipboard</div>
+
+<script>
+/* Each option adds points to milan (m) and/or ocd (o).
+   Two independent scores, each normalized against its own max. */
+const QUESTIONS = [
+  // Imbruttito: hustle / fatturato.  OCD: intrusive doubt.
+  { q: "It's 6:45am. The first thought in your head is…",
+    a:[
+      {t:"\"Bella.\" Then: today we make fatturato. We crush.", m:3,o:0},
+      {t:"\"Did I actually send that email, or just think about sending it?\"", m:0,o:3},
+      {t:"Both, on a loop, until I check my Sent folder. Twice.", m:2,o:2},
+      {t:"Coffee. That's the whole thought.", m:0,o:0},
+    ]},
+  // Imbruttito: aperitivo ritual.  OCD: rituals that can't be skipped.
+  { q: "Aperitivo at 7pm is…",
+    a:[
+      {t:"A non-negotiable rite. Spritz, San Babila, the right people.", m:3,o:1},
+      {t:"Fine — once I've confirmed the plan, the table, and the exact time.", m:1,o:2},
+      {t:"A ritual I literally cannot skip without something feeling wrong.", m:1,o:3},
+      {t:"Just a drink before dinner?", m:0,o:0},
+    ]},
+  // contamination (OCI-R washing) vs Milanese fastidiousness
+  { q: "On the metro, someone coughs near you. You…",
+    a:[
+      {t:"Sanitize. Then sanitize again. Then think about it for an hour.", m:0,o:3},
+      {t:"Recoil — that jacket is cashmere and now it must be dry-cleaned.", m:3,o:1},
+      {t:"Hold your breath and relocate down the carriage, elegantly.", m:2,o:1},
+      {t:"Nothing. People cough.", m:0,o:0},
+    ]},
+  // checking (Y-BOCS) vs status anxiety
+  { q: "You've left the house. How many times do you check the door?",
+    a:[
+      {t:"Once. I'm late for padel and the SUV is double-parked.", m:3,o:0},
+      {t:"Twice — and I picture the lock turning as I walk to the car.", m:0,o:2},
+      {t:"I go back up. I photograph it locked. Sometimes I still doubt the photo.", m:0,o:3},
+      {t:"I assume it's locked.", m:0,o:0},
+    ]},
+  // symmetry / ordering (OCI-R) vs aesthetic perfectionism
+  { q: "A picture frame on the wall is 2° crooked. You…",
+    a:[
+      {t:"Straighten it. The room was disrespecting itself.", m:3,o:1},
+      {t:"Cannot continue the conversation until it is fixed. Cannot.", m:1,o:3},
+      {t:"Straighten it, step back, adjust again, step back, adjust again.", m:1,o:3},
+      {t:"Don't notice it.", m:0,o:0},
+    ]},
+  // Imbruttito phone/work compulsion vs reassurance-checking
+  { q: "Your relationship with your phone is best described as…",
+    a:[
+      {t:"Three calls at once. \"Capo, ti richiamo in cinque minuti.\"", m:3,o:0},
+      {t:"Re-reading sent messages to confirm I didn't say something terrible.", m:0,o:3},
+      {t:"Inbox at zero, notifications off, every app in its labeled folder.", m:1,o:2},
+      {t:"It's a phone.", m:0,o:0},
+    ]},
+  // Imbruttito weekend vs need for sameness/routine
+  { q: "The weekend plan is…",
+    a:[
+      {t:"Forte dei Marmi in summer, montagna in winter. Non si discute.", m:3,o:0},
+      {t:"Identical to last weekend. Deviating from the routine feels unsafe.", m:0,o:3},
+      {t:"Planned to the minute, or the anxiety starts on Thursday.", m:1,o:2},
+      {t:"Whatever happens, happens.", m:0,o:0},
+    ]},
+  // intrusive thoughts (real OCD core) vs Milanese catastrophizing about image
+  { q: "Standing on a high balcony, the thought that arrives is…",
+    a:[
+      {t:"\"This view easily adds €200k to the asking price.\"", m:3,o:0},
+      {t:"An unwanted, intrusive image that horrifies me — so I step back and count.", m:0,o:3},
+      {t:"\"Is my outfit right for being seen up here?\"", m:2,o:1},
+      {t:"\"Nice view.\"", m:0,o:0},
+    ]},
+  // counting / numbers (Y-BOCS) vs Imbruttito performance metrics
+  { q: "Be honest about numbers. Do you…",
+    a:[
+      {t:"Track revenue, steps, padel ranking and macros, daily, competitively.", m:3,o:1},
+      {t:"Have 'good' and 'bad' numbers, and avoid the bad ones?", m:0,o:3},
+      {t:"Count stairs, tiles, or do things a 'safe' number of times?", m:0,o:3},
+      {t:"Not really think about numbers.", m:0,o:0},
+    ]},
+  // washing/order vs Milanese hygiene-as-class
+  { q: "Your bathroom towels are…",
+    a:[
+      {t:"Hotel-folded, monogrammed, color-matched to the Boffi tile.", m:3,o:1},
+      {t:"Folded in exact thirds, edges aligned, or it's done again.", m:1,o:3},
+      {t:"Replaced constantly — clean is never quite clean enough.", m:0,o:3},
+      {t:"On the floor, probably.", m:0,o:0},
+    ]},
+  // reassurance seeking (real OCD) vs Imbruttito name-dropping confidence
+  { q: "After making a decision, you…",
+    a:[
+      {t:"Never look back. \"L'ho deciso io, è giusto così.\"", m:3,o:0},
+      {t:"Ask three people if it was okay. Then ask them again.", m:0,o:3},
+      {t:"Replay it for errors before falling asleep.", m:0,o:2},
+      {t:"Move on without much thought.", m:0,o:0},
+    ]},
+  // small talk vs mental review / 'just right' feeling
+  { q: "An everyday task feels finished when…",
+    a:[
+      {t:"It looks expensive and slightly better than the neighbour's.", m:3,o:0},
+      {t:"It feels 'just right' — and I'll redo it until it does.", m:0,o:3},
+      {t:"It's done correctly, then quietly improved anyway.", m:2,o:2},
+      {t:"It's done. Done is done.", m:0,o:0},
+    ]},
+  // Imbruttito wardrobe vs ordering compulsion
+  { q: "Your wardrobe is…",
+    a:[
+      {t:"Greige, logo-free, the same perfect cashmere in four shades.", m:3,o:1},
+      {t:"Sorted by colour, then sleeve, then season — and it must stay that way.", m:1,o:3},
+      {t:"Identical outfits on matching hangers, spaced exactly apart.", m:2,o:2},
+      {t:"Functional. I grab what's clean.", m:0,o:0},
+    ]},
+  // avoidance vs Milanese standards
+  { q: "There's a tiny stain on the tablecloth at dinner. You…",
+    a:[
+      {t:"Have the table changed. We're not animals.", m:3,o:1},
+      {t:"Can't stop looking at it. It contaminates the whole evening.", m:0,o:3},
+      {t:"Rotate your plate to cover it and move on.", m:1,o:1},
+      {t:"Don't even register it.", m:0,o:0},
+    ]},
+  // 'good enough' / completion
+  { q: "When someone says \"dai, è abbastanza, basta così\" you…",
+    a:[
+      {t:"Disagree on principle. Abbastanza is for other people.", m:3,o:1},
+      {t:"Physically cannot stop until it's actually, completely right.", m:0,o:3},
+      {t:"Smile, agree, and secretly redo it later.", m:2,o:2},
+      {t:"Happily stop. Basta così.", m:0,o:0},
+    ]},
+];
+
+let idx=0, m=0, o=0, mMax=0, oMax=0;
+const $=id=>document.getElementById(id);
+
+// precompute max achievable per axis (best option each q)
+QUESTIONS.forEach(Q=>{
+  mMax += Math.max(...Q.a.map(x=>x.m));
+  oMax += Math.max(...Q.a.map(x=>x.o));
+});
+
+$("begin").onclick=()=>{ $("intro").classList.add("hidden"); $("quiz").classList.remove("hidden"); render(); };
+$("retake").onclick=()=>{ idx=0;m=0;o=0; $("result").classList.add("hidden"); $("intro").classList.remove("hidden"); };
+
+function render(){
+  const Q=QUESTIONS[idx];
+  $("qcount").textContent=`Question ${idx+1} of ${QUESTIONS.length}`;
+  $("pfill").style.width=`${(idx/QUESTIONS.length)*100}%`;
+  const qt=$("qtext"); qt.textContent=Q.q; qt.classList.remove("fade"); void qt.offsetWidth; qt.classList.add("fade");
+  const wrap=$("opts"); wrap.innerHTML="";
+  Q.a.forEach(opt=>{
+    const b=document.createElement("button");
+    b.className="opt"; b.textContent=opt.t;
+    b.onclick=()=>{ m+=opt.m; o+=opt.o; idx++; (idx<QUESTIONS.length)?render():finish(); };
+    wrap.appendChild(b);
+  });
+}
+
+function finish(){
+  $("quiz").classList.add("hidden");
+  const res=$("result"); res.classList.remove("hidden"); res.classList.add("fade");
+  const mp=Math.max(0,Math.round((m/mMax)*100));
+  const op=Math.max(0,Math.round((o/oMax)*100));
+  $("mpct").textContent=mp+"%"; $("opct").textContent=op+"%";
+  setTimeout(()=>{ $("mbar").style.width=mp+"%"; $("obar").style.width=op+"%"; },80);
+  $("verdict").innerHTML=verdict(mp,op);
+  window._share=`I'm ${mp}% Milanese and ${op}% OCD, according to this diagnostic.`;
+}
+
+function verdict(mp,op){
+  const d=mp-op;
+  if(mp>=70&&op>=70) return "The verdict: <b>both, severely.</b> You are a beautifully appointed crisis. Milan gave you the taste; something else makes you check the closet alignment at 2am.";
+  if(d>=20) return "The verdict: <b>it's Milan.</b> This isn't compulsion — it's standards. You simply refuse to live among the badly dressed and the asymmetrical.";
+  if(d<=-20) return "The verdict: <b>it's the OCD.</b> The elegance is real, but the engine underneath it is the need for things to be <i>exactly so.</i>";
+  if(mp<35&&op<35) return "The verdict: <b>remarkably, neither.</b> You are relaxed, tolerant of chaos, and frankly suspicious in this company. How did you get here?";
+  return "The verdict: <b>genuinely too close to call.</b> The taste and the compulsion have fused. There is no longer a seam.";
+}
+
+const TITLE="Am I From Milan or Do I Have OCD?";
+function shareText(){ return (window._share||"")+" "+TITLE; }
+function shareUrl(){ return location.href.startsWith("http")?location.href:"https://milanocd.example"; }
+
+// hide native button if the browser doesn't support it (most desktops)
+const nb=$("shareNative");
+if(!navigator.share){ nb.style.display="none"; }
+nb.onclick=async()=>{
+  try{ await navigator.share({ title:TITLE, text:shareText(), url:shareUrl() }); }
+  catch(e){ /* user cancelled */ }
+};
+$("shareX").onclick=()=>{
+  const txt=encodeURIComponent(shareText());
+  const u=encodeURIComponent(shareUrl());
+  window.open(`https://twitter.com/intent/tweet?text=${txt}&url=${u}`,"_blank");
+};
+$("copy").onclick=async()=>{
+  try{ await navigator.clipboard.writeText(shareText()+" "+shareUrl()); toast(); }
+  catch(e){ toast("Copy failed — select manually"); }
+};
+function toast(msg){ const t=$("toast"); if(msg)t.textContent=msg; t.classList.add("show"); setTimeout(()=>t.classList.remove("show"),1600); }
+</script>
+</body>
+</html>
